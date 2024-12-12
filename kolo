@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulace změny hesla</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: lime;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #output {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        #scratch-container {
+            display: none;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="output">Přístup do nastavení...</div>
+
+    <div id="scratch-container">
+        <iframe src="https://scratch.mit.edu/projects/1076365149/embed" 
+                allowtransparency="true" 
+                width="485" 
+                height="402" 
+                frameborder="0" 
+                scrolling="no" 
+                allowfullscreen>
+        </iframe>
+    </div>
+
+    <script>
+        let steps = [
+            "Otevírám nastavení...",
+            "Zobrazuji osobní údaje...",
+            "Přechod do nastavení hesla...",
+            "Měním heslo...",
+            "Zadávání nového hesla...",
+            "Přístup potvrzen!"
+        ];
+
+        let index = 0;
+        let output = document.getElementById('output');
+        let scratchContainer = document.getElementById('scratch-container');
+
+        function displayStep() {
+            if (index < steps.length) {
+                output.textContent = steps[index];
+                index++;
+                setTimeout(displayStep, 2000);
+            } else {
+                showScratchProject();
+            }
+        }
+
+        function showScratchProject() {
+            output.style.display = "none";
+            scratchContainer.style.display = "block";
+        }
+
+        window.onload = displayStep;
+    </script>
+</body>
+</html>
